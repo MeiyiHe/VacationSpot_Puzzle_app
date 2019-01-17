@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		2FAE645121F03420008FA24D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE645021F03420008FA24D /* AppDelegate.swift */; };
-		2FAE645321F03420008FA24D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE645221F03420008FA24D /* ViewController.swift */; };
+		2FAE645321F03420008FA24D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE645221F03420008FA24D /* MainTabBarController.swift */; };
 		2FAE645621F03420008FA24D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FAE645421F03420008FA24D /* Main.storyboard */; };
 		2FAE645821F03421008FA24D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FAE645721F03421008FA24D /* Assets.xcassets */; };
 		2FAE645B21F03421008FA24D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FAE645921F03421008FA24D /* LaunchScreen.storyboard */; };
 		2FAE646621F03421008FA24D /* VacationSpotAndPuzzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE646521F03421008FA24D /* VacationSpotAndPuzzleTests.swift */; };
+		2FAE647121F0355A008FA24D /* PlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647021F0355A008FA24D /* PlaceViewController.swift */; };
+		2FAE647321F03580008FA24D /* PlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647221F03580008FA24D /* PlaceTableViewController.swift */; };
+		2FAE647521F04B67008FA24D /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647421F04B67008FA24D /* PuzzleViewController.swift */; };
+		2FAE647721F0F7EC008FA24D /* PuzzleGameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647621F0F7EC008FA24D /* PuzzleGameCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +32,7 @@
 /* Begin PBXFileReference section */
 		2FAE644D21F03420008FA24D /* VacationSpotAndPuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VacationSpotAndPuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FAE645021F03420008FA24D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2FAE645221F03420008FA24D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2FAE645221F03420008FA24D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2FAE645521F03420008FA24D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2FAE645721F03421008FA24D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FAE645A21F03421008FA24D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +40,10 @@
 		2FAE646121F03421008FA24D /* VacationSpotAndPuzzleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VacationSpotAndPuzzleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FAE646521F03421008FA24D /* VacationSpotAndPuzzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationSpotAndPuzzleTests.swift; sourceTree = "<group>"; };
 		2FAE646721F03421008FA24D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FAE647021F0355A008FA24D /* PlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceViewController.swift; sourceTree = "<group>"; };
+		2FAE647221F03580008FA24D /* PlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewController.swift; sourceTree = "<group>"; };
+		2FAE647421F04B67008FA24D /* PuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewController.swift; sourceTree = "<group>"; };
+		2FAE647621F0F7EC008FA24D /* PuzzleGameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleGameCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +86,15 @@
 			isa = PBXGroup;
 			children = (
 				2FAE645021F03420008FA24D /* AppDelegate.swift */,
-				2FAE645221F03420008FA24D /* ViewController.swift */,
+				2FAE645221F03420008FA24D /* MainTabBarController.swift */,
 				2FAE645421F03420008FA24D /* Main.storyboard */,
 				2FAE645721F03421008FA24D /* Assets.xcassets */,
 				2FAE645921F03421008FA24D /* LaunchScreen.storyboard */,
 				2FAE645C21F03421008FA24D /* Info.plist */,
+				2FAE647021F0355A008FA24D /* PlaceViewController.swift */,
+				2FAE647221F03580008FA24D /* PlaceTableViewController.swift */,
+				2FAE647421F04B67008FA24D /* PuzzleViewController.swift */,
+				2FAE647621F0F7EC008FA24D /* PuzzleGameCollectionViewCell.swift */,
 			);
 			path = VacationSpotAndPuzzle;
 			sourceTree = "<group>";
@@ -197,7 +209,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FAE645321F03420008FA24D /* ViewController.swift in Sources */,
+				2FAE647721F0F7EC008FA24D /* PuzzleGameCollectionViewCell.swift in Sources */,
+				2FAE647521F04B67008FA24D /* PuzzleViewController.swift in Sources */,
+				2FAE647121F0355A008FA24D /* PlaceViewController.swift in Sources */,
+				2FAE647321F03580008FA24D /* PlaceTableViewController.swift in Sources */,
+				2FAE645321F03420008FA24D /* MainTabBarController.swift in Sources */,
 				2FAE645121F03420008FA24D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
