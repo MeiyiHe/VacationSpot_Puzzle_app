@@ -12,16 +12,14 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         tabBar.barTintColor = UIColor(red: 38/255, green: 196/255, blue: 133/255, alpha: 1)
         setUpTabBar()
     }
     
-    func setUpTabBar() {
-        
-        // initialize view controllers
-        
+    
+    // initialize view controllers
+    func setUpTabBar() {        
         let placeTableViewController = UINavigationController(rootViewController: PlaceTableViewController())
         placeTableViewController.tabBarItem.image = UIImage(named: "star_black")?.withRenderingMode(.alwaysOriginal)
         placeTableViewController.tabBarItem.selectedImage = UIImage(named: "star_white")?.withRenderingMode(.alwaysOriginal)
@@ -35,7 +33,7 @@ class MainTabBarController: UITabBarController {
         
         guard let items = tabBar.items else { return }
         for item in items {
-            item.imageInsets = UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0 )
+            item.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -3, right: 0 )
         }
     }
 }

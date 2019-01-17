@@ -10,6 +10,8 @@ import UIKit
 
 class PuzzleGameCollectionViewCell: UICollectionViewCell {
     
+    
+    // each cell contains a puzzle piece
     let imgView: UIImageView = {
         let v = UIImageView()
         v.image = #imageLiteral(resourceName: "Layer 3")
@@ -18,6 +20,7 @@ class PuzzleGameCollectionViewCell: UICollectionViewCell {
         return v
     }()
     
+    // the border highlight when select a cell
     let border: UIView = {
         let v = UIView()
         v.backgroundColor = UIColor.clear
@@ -47,6 +50,8 @@ class PuzzleGameCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // set up constraints
     func setUpViews() {
         self.addSubview(imgView)
         imgView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive=true

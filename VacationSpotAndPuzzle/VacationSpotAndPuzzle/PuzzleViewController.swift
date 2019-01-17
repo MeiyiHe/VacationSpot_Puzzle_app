@@ -10,12 +10,13 @@ import UIKit
 
 class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    
+    // puzzle image array
     var questionImageArray = [#imageLiteral(resourceName: "Layer 1"), #imageLiteral(resourceName: "Layer 3"), #imageLiteral(resourceName: "Layer 6"), #imageLiteral(resourceName: "Layer 4"), #imageLiteral(resourceName: "Layer 5"), #imageLiteral(resourceName: "Layer 7"), #imageLiteral(resourceName: "Layer 8"), #imageLiteral(resourceName: "Layer 9"), #imageLiteral(resourceName: "Layer 10")]
     
     var correctAns = [0,3,1,4,2,5,6,7,8]
     
-    var wrongAns = [0,1,2,3,4,5,6,7,8]
+    // initial display
+    var wrongAns = Array(0..<9)
     var wrongImgArray = [UIImage]()
     var undoArray = [(first: IndexPath, second: IndexPath)]()
     var numMoves = 0
@@ -23,7 +24,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     var firstIdxPath:IndexPath?
     var secondIdxPath:IndexPath?
     
-    
+    // collection view for the puzzle game
     let myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
@@ -35,6 +36,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         return cv
     }()
     
+    // initialize swap button
     let swapBtn: UIButton = {
         let btn = UIButton(type: UIButton.ButtonType.system)
         btn.setTitle("Swap", for: UIControl.State.normal)
@@ -43,6 +45,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         return btn
     }()
     
+    // initialize undo button
     let undoBtn: UIButton = {
         let btn = UIButton(type: UIButton.ButtonType.system)
         btn.setTitle("Undo", for: UIControl.State.normal)
@@ -52,6 +55,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         return btn
     }()
     
+    // initalize count move label
     let moveCntLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = NSTextAlignment.center
@@ -63,7 +67,6 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.title = "Puzzle"
         
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -79,12 +82,14 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         return questionImageArray.count
     }
     
+    // populate cells in the collection view
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PuzzleGameCollectionViewCell
         cell.imgView.image = wrongImgArray[indexPath.item]
         return cell
     }
     
+    // handle selection in puzzle game
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
@@ -102,6 +107,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
+    // store index path when selecting cell
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if indexPath == firstIdxPath {
             firstIdxPath = nil
@@ -110,10 +116,13 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
+    // set up the width of each cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
         return CGSize(width: width/3, height: width/3)
     }
+    
+    
     
     func setUpViews() {
         
@@ -151,6 +160,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         moveCntLabel.text = "Moves: \(numMoves)"
     }
     
+    // when user click on swap button
     @objc func swapBtnAction() {
         // check nil
         guard let start = firstIdxPath, let end = secondIdxPath else {return}
@@ -187,6 +197,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     // this function reset the game
     func restartGame() {
         self.undoArray.removeAll()
+        // each time will have a different puzzle game
         self.wrongAns = Array(0..<9)
         self.wrongImgArray = questionImageArray
         self.firstIdxPath = nil
@@ -197,7 +208,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     
-    // this funciton handle undo button
+    // when user click on undo button
     @objc func undoBtnAction() {
         if undoArray.count == 0 {
             return
