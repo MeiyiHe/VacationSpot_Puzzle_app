@@ -21,15 +21,17 @@ class MainTabBarController: UITabBarController {
     func setUpTabBar() {
         
         // initialize view controllers
-        let placeViewController = UINavigationController(rootViewController: PlaceViewController())
-        placeViewController.tabBarItem.image = UIImage(named: "video_black")?.withRenderingMode(.alwaysOriginal)
-        placeViewController.tabBarItem.selectedImage = UIImage(named: "video_white")?.withRenderingMode(.alwaysOriginal)
         
         let placeTableViewController = UINavigationController(rootViewController: PlaceTableViewController())
         placeTableViewController.tabBarItem.image = UIImage(named: "star_black")?.withRenderingMode(.alwaysOriginal)
         placeTableViewController.tabBarItem.selectedImage = UIImage(named: "star_white")?.withRenderingMode(.alwaysOriginal)
         
-        viewControllers = [placeTableViewController, placeViewController]
+        
+        let puzzleViewController = UINavigationController(rootViewController: PuzzleViewController())
+        puzzleViewController.tabBarItem.image = UIImage(named: "video_black")?.withRenderingMode(.alwaysOriginal)
+        puzzleViewController.tabBarItem.selectedImage = UIImage(named: "video_white")?.withRenderingMode(.alwaysOriginal)
+        
+        viewControllers = [placeTableViewController, puzzleViewController]
         
         guard let items = tabBar.items else { return }
         for item in items {

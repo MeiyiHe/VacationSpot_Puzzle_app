@@ -11,7 +11,8 @@ import UIKit
 class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
-    var questionImageArray = [#imageLiteral(resourceName: "Layer 1"), #imageLiteral(resourceName: "Layer 7"), #imageLiteral(resourceName: "Layer 4"), #imageLiteral(resourceName: "Layer 9"), #imageLiteral(resourceName: "Layer 6"), #imageLiteral(resourceName: "Layer 10"), #imageLiteral(resourceName: "Layer 3"), #imageLiteral(resourceName: "Layer 8"), #imageLiteral(resourceName: "Layer 5")]
+    var questionImageArray = [#imageLiteral(resourceName: "Layer 1"), #imageLiteral(resourceName: "Layer 3"), #imageLiteral(resourceName: "Layer 6"), #imageLiteral(resourceName: "Layer 4"), #imageLiteral(resourceName: "Layer 5"), #imageLiteral(resourceName: "Layer 7"), #imageLiteral(resourceName: "Layer 8"), #imageLiteral(resourceName: "Layer 9"), #imageLiteral(resourceName: "Layer 10")]
+    
     var correctAns = [0,3,1,4,2,5,6,7,8]
     
     var wrongAns = [0,1,2,3,4,5,6,7,8]
@@ -46,6 +47,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         let btn = UIButton(type: UIButton.ButtonType.system)
         btn.setTitle("Undo", for: UIControl.State.normal)
         btn.setTitleColor(UIColor.red, for: UIControl.State.normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -74,7 +76,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     // MARK: collection view set up
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return questionImageArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -122,8 +124,8 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         self.view.addSubview(myCollectionView)
         myCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive=true
-        myCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20).isActive=true
-        myCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -21).isActive=true
+        myCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 170).isActive=true
+        myCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive=true
         myCollectionView.heightAnchor.constraint(equalTo: myCollectionView.widthAnchor).isActive=true
         
         
@@ -136,14 +138,14 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         self.view.addSubview(undoBtn)
         undoBtn.widthAnchor.constraint(equalToConstant: 200).isActive=true
-        undoBtn.topAnchor.constraint(equalTo: swapBtn.bottomAnchor, constant: 30).isActive=true
+        undoBtn.topAnchor.constraint(equalTo: swapBtn.bottomAnchor, constant: 15).isActive=true
         undoBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive=true
         undoBtn.heightAnchor.constraint(equalToConstant: 50).isActive=true
         undoBtn.addTarget(self, action: #selector(undoBtnAction), for: .touchUpInside)
         
         self.view.addSubview(moveCntLabel)
         moveCntLabel.widthAnchor.constraint(equalToConstant: 200).isActive=true
-        moveCntLabel.topAnchor.constraint(equalTo: undoBtn.bottomAnchor, constant: 20).isActive=true
+        moveCntLabel.topAnchor.constraint(equalTo: undoBtn.bottomAnchor, constant: 15).isActive=true
         moveCntLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive=true
         moveCntLabel.heightAnchor.constraint(equalToConstant: 50).isActive=true
         moveCntLabel.text = "Moves: \(numMoves)"
