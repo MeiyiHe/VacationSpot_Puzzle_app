@@ -10,12 +10,13 @@ import UIKit
 
 class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var currImage = UIImage(named: "cat")
     // puzzle image array
     var questionImageArray = [#imageLiteral(resourceName: "Layer 1"), #imageLiteral(resourceName: "Layer 3"), #imageLiteral(resourceName: "Layer 6"), #imageLiteral(resourceName: "Layer 4"), #imageLiteral(resourceName: "Layer 5"), #imageLiteral(resourceName: "Layer 7"), #imageLiteral(resourceName: "Layer 8"), #imageLiteral(resourceName: "Layer 9"), #imageLiteral(resourceName: "Layer 10")]
     
     //var questionImageArray = slice(image: UIImage("cat"), into: 3)
-    
-    var correctAns = [0, 3, 1, 4, 2, 5, 6, 7, 8]
+    //var correctAns = [0, 3, 1, 4, 2, 5, 6, 7, 8]
+    var correctAns = Array(0..<9)
     
     // initial display
     var wrongAns = Array(0..<9)
@@ -77,10 +78,11 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         let rightButton = UIBarButtonItem(title: "Change Puzzle", style: UIBarButtonItem.Style.plain, target: self, action: #selector(myRightSideBarButtonItemTapped(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
         
-        questionImageArray = slice(image: UIImage(named: "cat")!, into: 3)
-        
-        //print(questionImageArray.description)
-        wrongImgArray = questionImageArray
+        questionImageArray = slice(image: currImage ?? UIImage(named: "cat")!, into: 3)
+        let curr = Dictionary(uniqueKeysWithValues: zip(wrongAns, questionImageArray))
+        let newArray = curr.shuffled()
+        wrongAns = newArray.map({$0.key})
+        wrongImgArray = newArray.map({$0.value})
         
         setUpViews()
     }
@@ -213,8 +215,20 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     func restartGame() {
         self.undoArray.removeAll()
         // each time will have a different puzzle game
-        self.wrongAns = Array(0..<9)
-        self.wrongImgArray = questionImageArray
+        
+        
+//        self.wrongAns = Array(0..<9)
+//        self.wrongImgArray = questionImageArray
+        
+        
+        self.questionImageArray = slice(image: currImage ?? UIImage(named: "cat")!, into: 3)
+        
+        let curr = Dictionary(uniqueKeysWithValues: zip(wrongAns, questionImageArray))
+        let newArray = curr.shuffled()
+        self.wrongAns = newArray.map({$0.key})
+        self.wrongImgArray = newArray.map({$0.value})
+        
+        
         self.firstIdxPath = nil
         self.secondIdxPath = nil
         self.numMoves = 0
@@ -297,11 +311,12 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         
         //return images
-        print(emptyDict)
+        //print(emptyDict)
         let sortedDict = emptyDict.sorted { (aDic, bDic) -> Bool in
             return aDic.key < bDic.key
         }
         print(sortedDict.map({$0.key}))
+        //return sortedDict
         return sortedDict.map({$0.value})
     }
 
