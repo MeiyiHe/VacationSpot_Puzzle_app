@@ -20,6 +20,7 @@
 		2FAE647B21F184EC008FA24D /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647A21F184EC008FA24D /* RatingControl.swift */; };
 		2FAE647D21F18514008FA24D /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647C21F18514008FA24D /* Place.swift */; };
 		2FAE647F21F22EE3008FA24D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FAE647E21F22EE3008FA24D /* Main.storyboard */; };
+		2FAE648121F25BFA008FA24D /* ChangePuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE648021F25BFA008FA24D /* ChangePuzzleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		2FAE647A21F184EC008FA24D /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		2FAE647C21F18514008FA24D /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		2FAE647E21F22EE3008FA24D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		2FAE648021F25BFA008FA24D /* ChangePuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePuzzleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				2FAE647821F184BA008FA24D /* PlaceTableViewCell.swift */,
 				2FAE647A21F184EC008FA24D /* RatingControl.swift */,
 				2FAE647C21F18514008FA24D /* Place.swift */,
+				2FAE648021F25BFA008FA24D /* ChangePuzzleViewController.swift */,
 			);
 			path = VacationSpotAndPuzzle;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				2FAE647921F184BA008FA24D /* PlaceTableViewCell.swift in Sources */,
 				2FAE647B21F184EC008FA24D /* RatingControl.swift in Sources */,
 				2FAE647321F03580008FA24D /* PlaceTableViewController.swift in Sources */,
+				2FAE648121F25BFA008FA24D /* ChangePuzzleViewController.swift in Sources */,
 				2FAE647D21F18514008FA24D /* Place.swift in Sources */,
 				2FAE645321F03420008FA24D /* MainTabBarController.swift in Sources */,
 				2FAE645121F03420008FA24D /* AppDelegate.swift in Sources */,

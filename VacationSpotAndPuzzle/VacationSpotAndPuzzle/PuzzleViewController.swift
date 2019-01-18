@@ -79,10 +79,17 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         setUpViews()
     }
     
-    // when tap on cancel button on the navigation bar
-    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!){
-        //_ = navigationController?.popViewController(animated: true)
-        print("right button tapped")
+//    // when tap on cancel button on the navigation bar
+//    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!){
+//        //_ = navigationController?.popViewController(animated: true)
+//        print("right button tapped")
+//    }
+    
+    // when tap on add button on the navigation bar
+    @objc func myRightSideBarButtonItemTapped(_ sender:UIBarButtonItem!){
+        let newViewController = ChangePuzzleViewController()
+        newViewController.puzzleViewController = self
+        self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
     // MARK: collection view set up
