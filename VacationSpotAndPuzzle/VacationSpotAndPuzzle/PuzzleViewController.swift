@@ -13,7 +13,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     // puzzle image array
     var questionImageArray = [#imageLiteral(resourceName: "Layer 1"), #imageLiteral(resourceName: "Layer 3"), #imageLiteral(resourceName: "Layer 6"), #imageLiteral(resourceName: "Layer 4"), #imageLiteral(resourceName: "Layer 5"), #imageLiteral(resourceName: "Layer 7"), #imageLiteral(resourceName: "Layer 8"), #imageLiteral(resourceName: "Layer 9"), #imageLiteral(resourceName: "Layer 10")]
     
-    var correctAns = [0,3,1,4,2,5,6,7,8]
+    var correctAns = [0, 3, 1, 4, 2, 5, 6, 7, 8]
     
     // initial display
     var wrongAns = Array(0..<9)

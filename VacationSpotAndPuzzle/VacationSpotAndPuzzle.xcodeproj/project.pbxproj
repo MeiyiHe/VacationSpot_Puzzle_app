@@ -17,6 +17,9 @@
 		2FAE647321F03580008FA24D /* PlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647221F03580008FA24D /* PlaceTableViewController.swift */; };
 		2FAE647521F04B67008FA24D /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647421F04B67008FA24D /* PuzzleViewController.swift */; };
 		2FAE647721F0F7EC008FA24D /* PuzzleGameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647621F0F7EC008FA24D /* PuzzleGameCollectionViewCell.swift */; };
+		2FAE647921F184BA008FA24D /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647821F184BA008FA24D /* PlaceTableViewCell.swift */; };
+		2FAE647B21F184EC008FA24D /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647A21F184EC008FA24D /* RatingControl.swift */; };
+		2FAE647D21F18514008FA24D /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE647C21F18514008FA24D /* Place.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		2FAE647221F03580008FA24D /* PlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewController.swift; sourceTree = "<group>"; };
 		2FAE647421F04B67008FA24D /* PuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewController.swift; sourceTree = "<group>"; };
 		2FAE647621F0F7EC008FA24D /* PuzzleGameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleGameCollectionViewCell.swift; sourceTree = "<group>"; };
+		2FAE647821F184BA008FA24D /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
+		2FAE647A21F184EC008FA24D /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+		2FAE647C21F18514008FA24D /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,9 @@
 				2FAE647221F03580008FA24D /* PlaceTableViewController.swift */,
 				2FAE647421F04B67008FA24D /* PuzzleViewController.swift */,
 				2FAE647621F0F7EC008FA24D /* PuzzleGameCollectionViewCell.swift */,
+				2FAE647821F184BA008FA24D /* PlaceTableViewCell.swift */,
+				2FAE647A21F184EC008FA24D /* RatingControl.swift */,
+				2FAE647C21F18514008FA24D /* Place.swift */,
 			);
 			path = VacationSpotAndPuzzle;
 			sourceTree = "<group>";
@@ -212,7 +221,10 @@
 				2FAE647721F0F7EC008FA24D /* PuzzleGameCollectionViewCell.swift in Sources */,
 				2FAE647521F04B67008FA24D /* PuzzleViewController.swift in Sources */,
 				2FAE647121F0355A008FA24D /* PlaceViewController.swift in Sources */,
+				2FAE647921F184BA008FA24D /* PlaceTableViewCell.swift in Sources */,
+				2FAE647B21F184EC008FA24D /* RatingControl.swift in Sources */,
 				2FAE647321F03580008FA24D /* PlaceTableViewController.swift in Sources */,
+				2FAE647D21F18514008FA24D /* Place.swift in Sources */,
 				2FAE645321F03420008FA24D /* MainTabBarController.swift in Sources */,
 				2FAE645121F03420008FA24D /* AppDelegate.swift in Sources */,
 			);
