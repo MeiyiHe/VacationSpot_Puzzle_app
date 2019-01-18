@@ -37,13 +37,16 @@ class PlaceViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 8
-        stackView.distribution = .fillEqually
+        //stackView.distribution = .fillEqually
         stackView.center.x = self.view.center.x
+        stackView.canSet = true
         
         NSLayoutConstraint.activate([
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 125),
-            stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 70),
-            stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -70),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 160),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            //stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 70),
+            //stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -70),
+            //stackView.heightAnchor.constraint(equalToConstant: 44)
             ])
     }
     
@@ -128,7 +131,7 @@ class PlaceViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         self.navigationItem.rightBarButtonItem = saveBarButton
         
         
-        placeNamelabel = UILabel(frame: CGRect(x: 50, y: 130, width: 300.0, height: 22))
+        placeNamelabel = UILabel(frame: CGRect(x: 50, y: 165, width: 300.0, height: 22))
         placeNamelabel.text = "Enter name, photo and rating:"
         placeNamelabel.lineBreakMode = .byWordWrapping
         placeNamelabel.textAlignment = .center
@@ -136,7 +139,7 @@ class PlaceViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         self.view.addSubview(placeNamelabel)
         
         
-        inputTextField = UITextField(frame: CGRect(x: 50, y: 160, width: 300.0, height: 30.00))
+        inputTextField = UITextField(frame: CGRect(x: 50, y: 195, width: 300.0, height: 30.00))
         inputTextField.placeholder = "Enter place name"
         inputTextField.borderStyle = UITextField.BorderStyle.line
         inputTextField.backgroundColor = UIColor.white
@@ -150,7 +153,7 @@ class PlaceViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         
         // adding imageview
-        placeImg = UIImageView(frame: CGRect(x: 50, y: 200, width: 300.0, height: 300.0))
+        placeImg = UIImageView(frame: CGRect(x: 50, y: 235, width: 300.0, height: 300.0))
         placeImg.image = UIImage(named:"defaultPhoto")
         placeImg.isUserInteractionEnabled = true
         placeImg.center.x = self.view.center.x

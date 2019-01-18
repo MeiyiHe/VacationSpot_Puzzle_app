@@ -30,9 +30,6 @@ class PlaceTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.register(PlaceTableViewCell.self, forCellReuseIdentifier: "PlaceTableViewCell")
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
         let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(PlaceTableViewController.myRightSideBarButtonItemTapped(_:)))
         self.navigationItem.rightBarButtonItem = addBarButton
         
@@ -115,7 +112,7 @@ class PlaceTableViewController: UITableViewController {
         cell.nameLabel.text = place.name
         cell.photoImageView.image = place.photo
         cell.ratingControl.rating = place.rating
-        
+        //cell.ratingControl.canSet = false
         return cell
     }
     

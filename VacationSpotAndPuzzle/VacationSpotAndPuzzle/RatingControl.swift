@@ -13,8 +13,8 @@ class RatingControl: UIStackView {
     
     var placeTableViewController: PlaceTableViewController!
     var place: Place!
+    var canSet: Bool = false
     
-    //var placeTableViewController: PlaceTableViewController!
     private var ratingButtons = [UIButton]()
     
     var rating = 0 {
@@ -102,29 +102,26 @@ class RatingControl: UIStackView {
             fatalError("The button, \(button), is not in the ratingButtons array: \(ratingButtons)")
         }
         
-        // check current view controller, only allow to edit in PlaceViewController
-        if let elem = (self.window?.rootViewController?.children)!.last{
+        // only can set the ratings in detail view
+        if canSet{
             
-            if elem is PlaceViewController {
-                
-                // calculate the rating of the selected button
-                let selectedRating = index + 1
-                
-                if selectedRating == rating {
-                    // if the selected star represents the current rating, reset the rating to 0.
-                    rating = 0
-                }else{
-                    // otherwise set the rating to the selected star
-                    rating = selectedRating
-                }
+            // calculate the rating of the selected button
+            let selectedRating = index + 1
+            
+            if selectedRating == rating {
+                // if the selected star represents the current rating, reset the rating to 0.
+                rating = 0
+            }else{
+                // otherwise set the rating to the selected star
+                rating = selectedRating
             }
-            if elem is PlaceTableViewController{
-                
-                for i in ratingButtons{
-                    i.isUserInteractionEnabled = false
-                }
+            
+        }else{
+            for i in ratingButtons{
+                i.isUserInteractionEnabled = false
             }
         }
+        
     }
     
     @objc func updateButtonSelectionStates() {
