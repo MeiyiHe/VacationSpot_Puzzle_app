@@ -31,10 +31,6 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [placeTableViewController, puzzleViewController]
         
-        guard let items = tabBar.items else { return }
-        for item in items {
-            item.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -3, right: 0 )
-        }
     }
 }
 
