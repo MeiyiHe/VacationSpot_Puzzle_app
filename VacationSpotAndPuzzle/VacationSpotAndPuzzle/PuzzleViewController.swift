@@ -72,10 +72,18 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "Puzzle Game"
         
+        let rightButton = UIBarButtonItem(title: "Change Puzzle", style: UIBarButtonItem.Style.plain, target: self, action: #selector(myRightSideBarButtonItemTapped(_:)))
+        self.navigationItem.rightBarButtonItem = rightButton
+        
         wrongImgArray = questionImageArray
         setUpViews()
     }
     
+    // when tap on cancel button on the navigation bar
+    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!){
+        //_ = navigationController?.popViewController(animated: true)
+        print("right button tapped")
+    }
     
     // MARK: collection view set up
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
