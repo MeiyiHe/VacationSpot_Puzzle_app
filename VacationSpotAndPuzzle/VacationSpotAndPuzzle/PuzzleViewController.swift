@@ -13,6 +13,8 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     // puzzle image array
     var questionImageArray = [#imageLiteral(resourceName: "Layer 1"), #imageLiteral(resourceName: "Layer 3"), #imageLiteral(resourceName: "Layer 6"), #imageLiteral(resourceName: "Layer 4"), #imageLiteral(resourceName: "Layer 5"), #imageLiteral(resourceName: "Layer 7"), #imageLiteral(resourceName: "Layer 8"), #imageLiteral(resourceName: "Layer 9"), #imageLiteral(resourceName: "Layer 10")]
     
+    //var questionImageArray = slice(image: UIImage("cat"), into: 3)
+    
     var correctAns = [0, 3, 1, 4, 2, 5, 6, 7, 8]
     
     // initial display
@@ -75,15 +77,14 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         let rightButton = UIBarButtonItem(title: "Change Puzzle", style: UIBarButtonItem.Style.plain, target: self, action: #selector(myRightSideBarButtonItemTapped(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
         
+        questionImageArray = slice(image: UIImage(named: "cat")!, into: 3)
+        
+        //print(questionImageArray.description)
         wrongImgArray = questionImageArray
+        
         setUpViews()
     }
     
-//    // when tap on cancel button on the navigation bar
-//    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!){
-//        //_ = navigationController?.popViewController(animated: true)
-//        print("right button tapped")
-//    }
     
     // when tap on add button on the navigation bar
     @objc func myRightSideBarButtonItemTapped(_ sender:UIBarButtonItem!){
@@ -111,7 +112,6 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         if firstIdxPath == nil {
             firstIdxPath = indexPath
             collectionView.selectItem(at: firstIdxPath, animated: true, scrollPosition: UICollectionView.ScrollPosition(rawValue: 0))
-            
         } else if secondIdxPath == nil {
             secondIdxPath = indexPath
             collectionView.selectItem(at: secondIdxPath, animated: true, scrollPosition: UICollectionView.ScrollPosition(rawValue: 0))
@@ -243,6 +243,66 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
             self.numMoves += 1
             self.moveCntLabel.text = "Moves: \(self.numMoves)"
         }
+    }
+    
+    // this function use to slice image into 9 pieces for puzzle game
+    func slice(image: UIImage, into howMany: Int) -> [UIImage] {
+        
+        var emptyDict: [Int: UIImage] = [:]
+        var idx = 0
+        
+        let width: CGFloat
+        let height: CGFloat
+        
+        switch image.imageOrientation {
+        case .left, .leftMirrored, .right, .rightMirrored:
+            width = image.size.height
+            height = image.size.width
+        default:
+            width = image.size.width
+            height = image.size.height
+        }
+        
+        let tileWidth = Int(width / CGFloat(howMany))
+        let tileHeight = Int(height / CGFloat(howMany))
+        
+        let scale = Int(image.scale)
+        //var images = [UIImage]()
+        
+        let cgImage = image.cgImage!
+        
+        var adjustedHeight = tileHeight
+        
+        var y = 0
+        for row in 0 ..< howMany {
+            if row == (howMany - 1) {
+                adjustedHeight = Int(height) - y
+            }
+            var adjustedWidth = tileWidth
+            var x = 0
+            for column in 0 ..< howMany {
+                if column == (howMany - 1) {
+                    adjustedWidth = Int(width) - x
+                }
+                let origin = CGPoint(x: x * scale, y: y * scale)
+                let size = CGSize(width: adjustedWidth * scale, height: adjustedHeight * scale)
+                let tileCgImage = cgImage.cropping(to: CGRect(origin: origin, size: size))!
+                //images.append(UIImage(cgImage: tileCgImage, scale: image.scale, orientation: image.imageOrientation))
+                
+                emptyDict.updateValue(UIImage(cgImage: tileCgImage, scale: image.scale, orientation: image.imageOrientation), forKey: idx)
+                idx += 1
+                x += tileWidth
+            }
+            y += tileHeight
+        }
+        
+        //return images
+        print(emptyDict)
+        let sortedDict = emptyDict.sorted { (aDic, bDic) -> Bool in
+            return aDic.key < bDic.key
+        }
+        print(sortedDict.map({$0.key}))
+        return sortedDict.map({$0.value})
     }
 
 }
