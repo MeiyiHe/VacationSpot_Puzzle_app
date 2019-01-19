@@ -11,10 +11,11 @@ import UIKit
 class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
 
     var placeImg: UIImageView!
+    
     var tapGestureRecognizer: UITapGestureRecognizer!
     var pickedImage: UIImage!
     
-    var puzzleViewController: PuzzleViewController!
+    var puzzleVC: PuzzleViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,9 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Select Picture"
+        
+        let saveBarButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(myRightSideBarButtonItemTapped(_:)))
+        self.navigationItem.rightBarButtonItem = saveBarButton
 
         // adding imageview
         placeImg = UIImageView(frame: CGRect(x: 50, y: 235, width: 300.0, height: 300.0))
@@ -30,15 +34,23 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
         placeImg.center.x = self.view.center.x
         self.view.addSubview(placeImg)
         
-        
         // add tapRecognizer to imageView
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImageFromPhotoLibrary))
         placeImg.addGestureRecognizer(tapGestureRecognizer)
         
-        var slicedImg = slice(image: placeImg.image!, into: 3)
-        print(slicedImg)
-        
     }
+    
+    // when tap on save button on the navigation bar
+    @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!){
+        puzzleVC.changePic = true
+        if self.placeImg.image == nil {
+            print("no picture upload")
+        }else{
+            print("there exist picture")
+        }
+        navigationController?.popViewController(animated: true)
+    }
+    
     
     // do something when image tapped
     @objc func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer){
@@ -56,11 +68,13 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
         
     }
     
+    
     // gets called when a user taps the image picker’s Cancel button
     @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
         // Dismiss the picker if the user canceled.
         dismiss(animated: true, completion: nil)
     }
+    
     
     // gets called when a user selects a photo
     @objc func imagePickerController(_ picker: UIImagePickerController,
@@ -70,59 +84,8 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
             print("Error: \(info)")
             return
         }
-        
         placeImg.image = selectedImage
         dismiss(animated: true, completion: nil)
     }
     
-    
-    // handle picture cutting here:
-    
-    func slice(image: UIImage, into howMany: Int) -> [UIImage] {
-        let width: CGFloat
-        let height: CGFloat
-        
-        switch image.imageOrientation {
-        case .left, .leftMirrored, .right, .rightMirrored:
-            width = image.size.height
-            height = image.size.width
-        default:
-            width = image.size.width
-            height = image.size.height
-        }
-        
-        let tileWidth = Int(width / CGFloat(howMany))
-        let tileHeight = Int(height / CGFloat(howMany))
-        
-        let scale = Int(image.scale)
-        var images = [UIImage]()
-        
-        let cgImage = image.cgImage!
-        
-        var adjustedHeight = tileHeight
-        
-        var y = 0
-        for row in 0 ..< howMany {
-            if row == (howMany - 1) {
-                adjustedHeight = Int(height) - y
-            }
-            var adjustedWidth = tileWidth
-            var x = 0
-            for column in 0 ..< howMany {
-                if column == (howMany - 1) {
-                    adjustedWidth = Int(width) - x
-                }
-                let origin = CGPoint(x: x * scale, y: y * scale)
-                let size = CGSize(width: adjustedWidth * scale, height: adjustedHeight * scale)
-                let tileCgImage = cgImage.cropping(to: CGRect(origin: origin, size: size))!
-                images.append(UIImage(cgImage: tileCgImage, scale: image.scale, orientation: image.imageOrientation))
-                x += tileWidth
-            }
-            y += tileHeight
-        }
-        return images
-    }
-    
-    
-
 }

@@ -27,6 +27,9 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     var firstIdxPath:IndexPath?
     var secondIdxPath:IndexPath?
     
+    var changePic = false
+    var changePuzzleVC: ChangePuzzleViewController!
+    
     // collection view for the puzzle game
     let myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -67,6 +70,22 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     }()
     
     
+    // reload data for adding new place in array
+    override func viewDidAppear(_ animated: Bool) {
+        self.myCollectionView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("check if this function get called")
+        self.myCollectionView.reloadData()
+        print("in viewWillApprear function: changePic---> \(changePic)")
+        
+        if changePic {
+            if changePuzzleVC.placeImg.image != nil {
+                questionImageArray = slice(image: changePuzzleVC.placeImg.image ?? UIImage(named: "cat")!, into: 3)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,10 +94,20 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "Puzzle Game"
         
+        myCollectionView.delegate = self
+        myCollectionView.dataSource = self
+        
         let rightButton = UIBarButtonItem(title: "Change Puzzle", style: UIBarButtonItem.Style.plain, target: self, action: #selector(myRightSideBarButtonItemTapped(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
         
-        questionImageArray = slice(image: currImage ?? UIImage(named: "cat")!, into: 3)
+        //changePicFunction()
+        
+        if changePic {
+            questionImageArray = slice(image: changePuzzleVC.placeImg.image ?? UIImage(named: "cat")!, into: 3)
+        }else{
+            questionImageArray = slice(image: currImage ?? UIImage(named: "cat")!, into: 3)
+        }
+        
         let curr = Dictionary(uniqueKeysWithValues: zip(wrongAns, questionImageArray))
         let newArray = curr.shuffled()
         wrongAns = newArray.map({$0.key})
@@ -91,7 +120,9 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     // when tap on add button on the navigation bar
     @objc func myRightSideBarButtonItemTapped(_ sender:UIBarButtonItem!){
         let newViewController = ChangePuzzleViewController()
-        newViewController.puzzleViewController = self
+        newViewController.puzzleVC = self
+        self.changePic = true
+        self.myCollectionView.reloadData()
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     

@@ -112,7 +112,6 @@ class PlaceTableViewController: UITableViewController {
         cell.nameLabel.text = place.name
         cell.photoImageView.image = place.photo
         cell.ratingControl.rating = place.rating
-        //cell.ratingControl.canSet = false
         return cell
     }
     

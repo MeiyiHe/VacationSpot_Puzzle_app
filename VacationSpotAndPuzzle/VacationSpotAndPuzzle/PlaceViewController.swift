@@ -108,7 +108,6 @@ class PlaceViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     }
                     placeTableViewController.places += [newPlace]
                 }
-                
             }
         }
         
