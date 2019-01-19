@@ -80,10 +80,17 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.myCollectionView.reloadData()
         print("in viewWillApprear function: changePic---> \(changePic)")
         
+        
         if changePic {
-            if changePuzzleVC.placeImg.image != nil {
-                questionImageArray = slice(image: changePuzzleVC.placeImg.image ?? UIImage(named: "cat")!, into: 3)
+            //print("Trying to get placeImg: \(changePuzzleVC.placeImg == nil)")
+            if let currImg = changePuzzleVC.placeImg {
+                print("===============the if in if let block ===============")
+                questionImageArray = slice(image: currImg.image ?? UIImage(named: "cat")!, into: 3)
             }
+//            print("Trying to get placeImg: \(changePuzzleVC.placeImg == nil)")
+//            if changePuzzleVC.placeImg.image != nil {
+//                questionImageArray = slice(image: changePuzzleVC.placeImg.image ?? UIImage(named: "cat")!, into: 3)
+//            }
         }
     }
     
