@@ -47,6 +47,7 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
     // when tap on save button on the navigation bar
     @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!){
         puzzleVC.changePic = true
+        puzzleVC.currImage = placeImg.image;
         if self.placeImg.image == nil {
             print("no picture upload")
         }else{

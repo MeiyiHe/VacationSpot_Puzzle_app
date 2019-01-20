@@ -72,34 +72,8 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     // reload data for adding new place in array
     override func viewDidAppear(_ animated: Bool) {
-        self.myCollectionView.reloadData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("check if this function get called")
-        self.myCollectionView.reloadData()
-        print("in viewWillApprear function: changePic---> \(changePic)")
-        
-        
-        if changePic {
-            //print("Trying to get placeImg: \(changePuzzleVC.placeImg == nil)")
-            let changePuzzleViewController = ChangePuzzleViewController()
-            changePuzzleViewController.puzzleVC = self
-            
-            
-            if changePuzzleVC != nil && changePuzzleViewController.placeImg != nil {
-                print("safe here")
-                let currImg = changePuzzleViewController.placeImg
-                questionImageArray = slice(image: currImg!.image ?? UIImage(named: "cat")!, into: 3)
-                
-            }
-            
-           // questionImageArray = slice(image: currImg.image ?? UIImage(named: "cat")!, into: 3)
-            
-//            print("Trying to get placeImg: \(changePuzzleVC.placeImg == nil)")
-//            if changePuzzleVC.placeImg.image != nil {
-//                questionImageArray = slice(image: changePuzzleVC.placeImg.image ?? UIImage(named: "cat")!, into: 3)
-//            }
+        if (changePic) {
+            restartGame();
         }
     }
     
@@ -281,6 +255,8 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.numMoves = 0
         self.moveCntLabel.text = "Moves: \(self.numMoves)"
         self.myCollectionView.reloadData()
+        
+        self.changePic = false
     }
     
     
