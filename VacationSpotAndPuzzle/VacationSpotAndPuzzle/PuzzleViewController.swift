@@ -237,11 +237,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.undoArray.removeAll()
         // each time will have a different puzzle game
         
-        
-//        self.wrongAns = Array(0..<9)
-//        self.wrongImgArray = questionImageArray
-        
-        
+        //questionImageArray = slice(image: changePuzzleVC.placeImg.image ?? UIImage(named: "cat")!, into: 3)
         self.questionImageArray = slice(image: currImage ?? UIImage(named: "cat")!, into: 3)
         
         let curr = Dictionary(uniqueKeysWithValues: zip(wrongAns, questionImageArray))

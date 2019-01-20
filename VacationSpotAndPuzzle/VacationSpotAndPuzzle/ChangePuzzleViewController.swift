@@ -48,6 +48,14 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
     @objc func myRightSideBarButtonItemTapped(_ sender: UIBarButtonItem!){
         puzzleVC.changePic = true
         puzzleVC.currImage = placeImg.image;
+        puzzleVC.questionImageArray = puzzleVC.slice(image: placeImg.image ?? UIImage(named: "cat")!, into: 3)
+        
+        let curr = Dictionary(uniqueKeysWithValues: zip(puzzleVC.wrongAns, puzzleVC.questionImageArray))
+        let newArray = curr.shuffled()
+        puzzleVC.wrongAns = newArray.map({$0.key})
+        puzzleVC.wrongImgArray = newArray.map({$0.value})
+        
+        
         if self.placeImg.image == nil {
             print("no picture upload")
         }else{
