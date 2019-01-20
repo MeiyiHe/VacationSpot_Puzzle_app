@@ -244,6 +244,16 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         //questionImageArray = slice(image: changePuzzleVC.placeImg.image ?? UIImage(named: "cat")!, into: 3)
         self.questionImageArray = slice(image: currImage ?? UIImage(named: "cat")!, into: 3)
         
+        print("\n")
+        print("Now user click on restart game:")
+        print("current wrongAns: \(self.wrongAns)")
+        print("\n")
+        self.correctAns = self.wrongAns
+        let curr = Dictionary(uniqueKeysWithValues: zip(wrongAns, questionImageArray))
+        let newArray = curr.shuffled()
+        self.wrongAns = newArray.map({$0.key})
+        self.wrongImgArray = newArray.map({$0.value})
+        
 //        let curr = Dictionary(uniqueKeysWithValues: zip(wrongAns, questionImageArray))
 //        let newArray = curr.shuffled()
 //        self.wrongAns = newArray.map({$0.key})

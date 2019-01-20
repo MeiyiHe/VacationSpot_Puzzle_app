@@ -58,8 +58,6 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
         print("-----------------!!!!!!!!!!!!!!!!!!!-----------------------")
         
         let newArray = curr.shuffled()
-        //print(newArray)
-//        let newArray = curr
         puzzleVC.wrongAns = newArray.map({$0.key})
         print("wrongAns: \(puzzleVC.wrongAns)")
         print("correctAns: \(puzzleVC.correctAns)")
