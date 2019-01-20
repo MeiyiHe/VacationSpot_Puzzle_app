@@ -83,14 +83,19 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if changePic {
             //print("Trying to get placeImg: \(changePuzzleVC.placeImg == nil)")
-            if changePuzzleVC != nil && changePuzzleVC.placeImg != nil {
+            let changePuzzleViewController = ChangePuzzleViewController()
+            changePuzzleViewController.puzzleVC = self
+            
+            
+            if changePuzzleVC != nil && changePuzzleViewController.placeImg != nil {
                 print("safe here")
+                let currImg = changePuzzleViewController.placeImg
+                questionImageArray = slice(image: currImg!.image ?? UIImage(named: "cat")!, into: 3)
+                
             }
-            guard let currImg = changePuzzleVC.placeImg else{
-                print("===============the empty block ===============")
-                return
-                //questionImageArray = slice(image: currImg.image ?? UIImage(named: "cat")!, into: 3)
-            }
+            
+           // questionImageArray = slice(image: currImg.image ?? UIImage(named: "cat")!, into: 3)
+            
 //            print("Trying to get placeImg: \(changePuzzleVC.placeImg == nil)")
 //            if changePuzzleVC.placeImg.image != nil {
 //                questionImageArray = slice(image: changePuzzleVC.placeImg.image ?? UIImage(named: "cat")!, into: 3)
