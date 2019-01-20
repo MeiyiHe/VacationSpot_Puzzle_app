@@ -51,8 +51,18 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
         puzzleVC.questionImageArray = puzzleVC.slice(image: placeImg.image ?? UIImage(named: "cat")!, into: 3)
         
         let curr = Dictionary(uniqueKeysWithValues: zip(puzzleVC.wrongAns, puzzleVC.questionImageArray))
+        print("In change puzzle view, check curr array and newarray")
+        //print(curr)
+        print("before shuffle, wrongAns: \( puzzleVC.wrongAns )")
+        puzzleVC.correctAns = puzzleVC.wrongAns
+        print("-----------------!!!!!!!!!!!!!!!!!!!-----------------------")
+        
         let newArray = curr.shuffled()
+        //print(newArray)
+//        let newArray = curr
         puzzleVC.wrongAns = newArray.map({$0.key})
+        print("wrongAns: \(puzzleVC.wrongAns)")
+        print("correctAns: \(puzzleVC.correctAns)")
         puzzleVC.wrongImgArray = newArray.map({$0.value})
         
         
@@ -68,9 +78,6 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
     // do something when image tapped
     @objc func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer){
         
-        // Ensures that if the user taps the image view while typing in the text field, the keyboard is dismissed properly.
-        //inputTextField.resignFirstResponder()
-        
         // add imagePicker to imageView
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
@@ -81,18 +88,6 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
         present(imagePickerController, animated: true, completion: nil)
         
     }
-    
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        //var image : UIImage!
-//
-//        if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
-//            placeImg.image = img
-//        }
-//        else if let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-//            placeImg.image = img
-//        }
-//        picker.dismiss(animated: true, completion: nil)
-//    }
     
     
     // gets called when a user taps the image picker’s Cancel button
