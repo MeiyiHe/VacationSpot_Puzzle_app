@@ -33,11 +33,7 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
         placeImg.isUserInteractionEnabled = true
         placeImg.center.x = self.view.center.x
         self.view.addSubview(placeImg)
-        
-        if placeImg != nil {
-            print("in changePuzzleVC not nil     !!!!")
-        }
-        
+                
         // add tapRecognizer to imageView
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImageFromPhotoLibrary))
         placeImg.addGestureRecognizer(tapGestureRecognizer)
@@ -51,16 +47,10 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
         puzzleVC.questionImageArray = puzzleVC.slice(image: placeImg.image ?? UIImage(named: "cat")!, into: 3)
         
         let curr = Dictionary(uniqueKeysWithValues: zip(puzzleVC.wrongAns, puzzleVC.questionImageArray))
-        print("In change puzzle view, check curr array and newarray")
-        //print(curr)
-        print("before shuffle, wrongAns: \( puzzleVC.wrongAns )")
         puzzleVC.correctAns = puzzleVC.wrongAns
-        print("-----------------!!!!!!!!!!!!!!!!!!!-----------------------")
         
         let newArray = curr.shuffled()
         puzzleVC.wrongAns = newArray.map({$0.key})
-        print("wrongAns: \(puzzleVC.wrongAns)")
-        print("correctAns: \(puzzleVC.correctAns)")
         puzzleVC.wrongImgArray = newArray.map({$0.value})
         
         
@@ -99,7 +89,7 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
     @objc func imagePickerController(_ picker: UIImagePickerController,
                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        var selectedImage: UIImage!
+        //var selectedImage: UIImage!
         if let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
             placeImg.image = selectedImage
         }

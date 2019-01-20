@@ -77,11 +77,3 @@ class Place: NSObject, NSCoding {
         self.rating = rating
     }
 }
-
-//// this extension helps checking for duplicate element in array
-//extension Place {
-////extension Place {
-//    static func == (lhs: Place, rhs: Place) -> Bool {
-//        return lhs.name == rhs.name
-//    }
-//}

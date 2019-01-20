@@ -219,11 +219,7 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
             self.undoArray.append((first: start, second: end))
             self.numMoves += 1
             self.moveCntLabel.text = "Moves: \(self.numMoves)"
-            
-            print("===================== In swapBtnAction: ===================")
-            print("current wrongAns: \(self.wrongAns)")
-            print("current correctAns: \(self.correctAns)")
-            
+                        
             if self.wrongAns == self.correctAns {
                 let alert = UIAlertController(title: "You Won!", message: "Congratulations 🤣", preferredStyle: UIAlertController.Style.alert)
                 let okay = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil)
@@ -244,21 +240,11 @@ class PuzzleViewController: UIViewController, UICollectionViewDelegate, UICollec
         //questionImageArray = slice(image: changePuzzleVC.placeImg.image ?? UIImage(named: "cat")!, into: 3)
         self.questionImageArray = slice(image: currImage ?? UIImage(named: "cat")!, into: 3)
         
-        print("\n")
-        print("Now user click on restart game:")
-        print("current wrongAns: \(self.wrongAns)")
-        print("\n")
         self.correctAns = self.wrongAns
         let curr = Dictionary(uniqueKeysWithValues: zip(wrongAns, questionImageArray))
         let newArray = curr.shuffled()
         self.wrongAns = newArray.map({$0.key})
         self.wrongImgArray = newArray.map({$0.value})
-        
-//        let curr = Dictionary(uniqueKeysWithValues: zip(wrongAns, questionImageArray))
-//        let newArray = curr.shuffled()
-//        self.wrongAns = newArray.map({$0.key})
-//        self.wrongImgArray = newArray.map({$0.value})
-        
         
         self.firstIdxPath = nil
         self.secondIdxPath = nil
