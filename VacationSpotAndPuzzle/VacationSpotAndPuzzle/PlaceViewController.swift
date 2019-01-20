@@ -241,21 +241,27 @@ class PlaceViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
      This method attempts to archive the meals array to a specific location, and returns true if it’s successful. It uses the constant Place.ArchiveURL that you defined in the Place class to identify where to save the information.
      */
     private func savePlaces() {
+        print("PlaceTableView: savePlaces(): \(placeTableViewController.places.count)")
         
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(placeTableViewController.places, toFile: Place.ArchiveURL.path)
+        let successSave = try? NSKeyedArchiver.archivedData(withRootObject: placeTableViewController.places, requiringSecureCoding: true)
+        // NSKeyedArchiver.archivedData(withRootObject: hero)
         
-        if isSuccessfulSave {
-            os_log("Places successfully saved.", log: OSLog.default, type: .debug)
-        }else{
-            os_log("Failed to save places", log: OSLog.default, type: .error)
-        }
+        //UserDefaults.standard.set(placeTableViewController.places, forKey: "SavedPlaces")
+        UserDefaults.standard.set( successSave, forKey: "SavedPlaces" )
+//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(placeTableViewController.places, toFile: Place.ArchiveURL.path)
+//
+//        if isSuccessfulSave {
+//            os_log("Places successfully saved.", log: OSLog.default, type: .debug)
+//        }else{
+//            os_log("Failed to save places", log: OSLog.default, type: .error)
+//        }
     }
     
     /*
      Return type of an optional array of Place objects, it might return an array of Place objects or might return nil
      */
-    private func loadPlaces() -> [Place]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: "Place.ArchiveURL.path") as? [Place]
-    }
+//    private func loadPlaces() -> [Place]? {
+//        return NSKeyedUnarchiver.unarchiveObject(withFile: "Place.ArchiveURL.path") as? [Place]
+//    }
 
 }

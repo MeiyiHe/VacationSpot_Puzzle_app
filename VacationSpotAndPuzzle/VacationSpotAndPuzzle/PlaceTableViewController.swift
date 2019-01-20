@@ -163,20 +163,33 @@ class PlaceTableViewController: UITableViewController {
      */
     private func savePlaces() {
         
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(places, toFile: Place.ArchiveURL.path)
         
-        if isSuccessfulSave {
-            os_log("Places successfully saved.", log: OSLog.default, type: .debug)
-        }else{
-            os_log("Failed to save places", log: OSLog.default, type: .error)
-        }
+        print("PlaceTableView: savePlaces(): \(places.count)")
+        // testing store information
+        //UserDefaults.standard.set(places, forKey: "SavedPlaces")
+        // PropertyListEncoder().encode(player)
+        
+        let successSave = try? NSKeyedArchiver.archivedData(withRootObject: places, requiringSecureCoding: true)
+        // NSKeyedArchiver.archivedData(withRootObject: hero)
+        
+        //UserDefaults.standard.set(placeTableViewController.places, forKey: "SavedPlaces")
+        UserDefaults.standard.set( successSave, forKey: "SavedPlaces" )
     }
     
     /*
      Return type of an optional array of Place objects, it might return an array of Place objects or might return nil
      */
     private func loadPlaces() -> [Place]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: "Place.ArchiveURL.path") as? [Place]
+        print("loadPlaces(): \(places.count)")
+    
+//        if let savedData = UserDefaults.standard.value(forKey: "SavedPlaces") as? NSData {
+//            places += NSKeyedUnarchiver.unarchiveObject(with: savedData as Data) as! [Place]
+//        }
+       // let data = NSKeyedUnarchiver.unarchivedObject( ofClasses: [Place], from: UserDefaults.standard.object(forKey: "SavedPlaces") as! Place)
+        //return NSKeyedUnarchiver.unarchivedObject(ofClasses: <#T##[AnyClass]#>, from: <#T##Data#>)
+        return UserDefaults.standard.object(forKey: "SavedPlaces") as? [Place]
+        
+        //return places
     }
 
 }
