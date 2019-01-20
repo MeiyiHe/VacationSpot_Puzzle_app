@@ -10,8 +10,6 @@ import UIKit
 
 class RatingControl: UIStackView {
     
-    
-    var placeTableViewController: PlaceTableViewController!
     var place: Place!
     var canSet: Bool = false
     

@@ -34,6 +34,10 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
         placeImg.center.x = self.view.center.x
         self.view.addSubview(placeImg)
         
+        if placeImg != nil {
+            print("in changePuzzleVC not nil     !!!!")
+        }
+        
         // add tapRecognizer to imageView
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImageFromPhotoLibrary))
         placeImg.addGestureRecognizer(tapGestureRecognizer)
