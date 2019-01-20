@@ -74,12 +74,25 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
         // add imagePicker to imageView
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePickerController.allowsEditing = true
         
         // Make sure ViewController is notified when the user picks an image.
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
         
     }
+    
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        //var image : UIImage!
+//
+//        if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+//            placeImg.image = img
+//        }
+//        else if let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+//            placeImg.image = img
+//        }
+//        picker.dismiss(animated: true, completion: nil)
+//    }
     
     
     // gets called when a user taps the image picker’s Cancel button
@@ -92,12 +105,16 @@ class ChangePuzzleViewController: UIViewController, UIImagePickerControllerDeleg
     // gets called when a user selects a photo
     @objc func imagePickerController(_ picker: UIImagePickerController,
                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // The info dictionary may contain multiple representations of the image. You want to use the original.
-        guard let selectedImage = info[.originalImage] as? UIImage else {
-            print("Error: \(info)")
-            return
+        
+        var selectedImage: UIImage!
+        if let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+            placeImg.image = selectedImage
         }
-        placeImg.image = selectedImage
+        else if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            placeImg.image = selectedImage
+        }
+        
+        //placeImg.image = selectedImage
         dismiss(animated: true, completion: nil)
     }
     
