@@ -185,7 +185,8 @@ class PlaceTableViewController: UITableViewController {
 //        if let savedData = UserDefaults.standard.value(forKey: "SavedPlaces") as? NSData {
 //            places += NSKeyedUnarchiver.unarchiveObject(with: savedData as Data) as! [Place]
 //        }
-       // let data = NSKeyedUnarchiver.unarchivedObject( ofClasses: [Place], from: UserDefaults.standard.object(forKey: "SavedPlaces") as! Place)
+        let data = NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self], from: UserDefaults.standard.object(forKey: "SavedPlaces") as! Place)
+        
         //return NSKeyedUnarchiver.unarchivedObject(ofClasses: <#T##[AnyClass]#>, from: <#T##Data#>)
         return UserDefaults.standard.object(forKey: "SavedPlaces") as? [Place]
         
